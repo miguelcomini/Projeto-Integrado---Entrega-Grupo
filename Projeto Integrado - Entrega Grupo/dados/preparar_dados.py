@@ -24,7 +24,6 @@ missing=set(x['n'] for x in data['sexo']['uf'])-set(data['reg']); print('sem reg
 t=pd.read_csv(d+'TabelaIndio.csv',sep=';',skiprows=5,names=['uf','n'],encoding='utf-8-sig',nrows=27)
 t['n']=t.n.astype(int); print(t.n.sum(), len(t))
 data['ind']={'uf':[{'n':r.uf,'v':int(r.n)} for r in t.itertuples()],'brasil':1694836}
-# stats checks (pandas, ddof=1)
 u=g[(g.AGREGACAO=='UF')&(g.ANO==2021)]
 r=u.RDPC; q1,q3=r.quantile(.25),r.quantile(.75); i=q3-q1
 print('RDPC',r.mean(),r.median(),q1,q3,i,u[(r<q1-1.5*i)|(r>q3+1.5*i)][['NOME','RDPC']].values.tolist())
